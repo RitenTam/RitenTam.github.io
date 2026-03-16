@@ -13,7 +13,7 @@ const Footer = () => (
 
       <div className="flex items-center gap-3">
         <a
-          href="https://github.com/ritendratamang"
+          href="https://github.com/RitenTam"
           target="_blank"
           rel="noopener noreferrer"
           className="w-8 h-8 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
@@ -21,7 +21,7 @@ const Footer = () => (
           <Github size={14} />
         </a>
         <a
-          href="https://linkedin.com/in/ritendratamang"
+          href="https://www.linkedin.com/in/ritendra-tamang"
           target="_blank"
           rel="noopener noreferrer"
           className="w-8 h-8 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-secondary transition-colors"

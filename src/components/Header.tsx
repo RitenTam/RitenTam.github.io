@@ -52,7 +52,7 @@ const Header = () => {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <a
-            href="https://github.com/ritendratamang"
+            href="https://github.com/RitenTam"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all duration-300"
@@ -60,7 +60,7 @@ const Header = () => {
             <Github size={16} />
           </a>
           <a
-            href="https://linkedin.com/in/ritendratamang"
+            href="https://www.linkedin.com/in/ritendra-tamang"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-secondary hover:glow-secondary transition-all duration-300"
@@ -101,7 +101,7 @@ const Header = () => {
           ))}
           <div className="flex gap-4 mt-6">
             <a
-              href="https://github.com/ritendratamang"
+              href="https://github.com/RitenTam"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary transition-all"
@@ -109,7 +109,7 @@ const Header = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/ritendratamang"
+              href="https://www.linkedin.com/in/ritendra-tamang"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-secondary transition-all"

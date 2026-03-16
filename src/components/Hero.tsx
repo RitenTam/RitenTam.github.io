@@ -53,7 +53,7 @@ const Hero = () => (
         </a>
         <div className="flex items-center gap-2 mt-1 sm:mt-0 sm:ml-2">
           <a
-            href="https://github.com/ritendratamang"
+            href="https://github.com/RitenTam"
             target="_blank"
             rel="noopener noreferrer"
             className="w-11 h-11 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all duration-300"
@@ -61,7 +61,7 @@ const Hero = () => (
             <Github size={18} />
           </a>
           <a
-            href="https://linkedin.com/in/ritendratamang"
+            href="https://www.linkedin.com/in/ritendra-tamang"
             target="_blank"
             rel="noopener noreferrer"
             className="w-11 h-11 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-secondary hover:glow-secondary transition-all duration-300"

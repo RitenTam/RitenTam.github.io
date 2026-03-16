@@ -19,14 +19,14 @@ const Contact = () => (
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
         <a
-          href="mailto:ritendratamang@gmail.com"
+          href="mailto:ritendratam404@gmail.com"
           className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5 transition-all duration-300"
         >
           <Mail size={16} />
           Say Hello
         </a>
         <a
-          href="https://github.com/ritendratamang"
+          href="https://github.com/RitenTam"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 glass px-6 py-3 rounded-full font-medium text-foreground hover:border-primary/50 hover:-translate-y-0.5 transition-all duration-300"
@@ -36,7 +36,7 @@ const Contact = () => (
           <ArrowUpRight size={14} className="text-muted-foreground" />
         </a>
         <a
-          href="https://linkedin.com/in/ritendratamang"
+          href="https://www.linkedin.com/in/ritendra-tamang"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 glass px-6 py-3 rounded-full font-medium text-foreground hover:border-secondary/50 hover:-translate-y-0.5 transition-all duration-300"

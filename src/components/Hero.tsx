@@ -46,7 +46,7 @@ const Hero = () => (
           View Projects
         </a>
         <a
-          href="#contact"
+          href="mailto:ritendratam404@gmail.com"
           className="w-full sm:w-auto text-center glass px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-foreground hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5"
         >
           Get in touch

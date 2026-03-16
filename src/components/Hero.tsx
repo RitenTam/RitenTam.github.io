@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, ArrowDown } from "lucide-react";
 
 const Hero = () => (
-  <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 max-w-6xl mx-auto pt-16 sm:pt-20 relative overflow-hidden">
+  <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 max-w-6xl mx-auto pt-16 sm:pt-20 relative overflow-hidden bg-gradient-to-br from-background via-primary/10 to-background">
     {/* Background orbs */}
     <div className="absolute top-10 sm:top-20 -left-20 sm:-left-40 w-48 sm:w-80 h-48 sm:h-80 bg-primary/8 rounded-full blur-[80px] sm:blur-[120px] animate-pulse-glow" />
     <div className="absolute bottom-10 sm:bottom-20 -right-20 sm:-right-40 w-56 sm:w-96 h-56 sm:h-96 bg-secondary/8 rounded-full blur-[80px] sm:blur-[120px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />

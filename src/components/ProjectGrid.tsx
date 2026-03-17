@@ -31,7 +31,7 @@ const personalProjects = [
     description:
       "A file synchronization tool that allows seamless syncing of files across multiple devices and platforms.",
     tags: ["TypeScript", "Node.js", "File Sync", "CLI"],
-    link: "https://github.com/RitenTam/DropSync",
+    link: "https://dropsyncr.vercel.app/",
   },
 ];
 

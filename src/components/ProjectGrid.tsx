@@ -45,46 +45,9 @@ const ProjectGrid = () => (
     >
       <span className="font-mono text-primary text-sm mb-2 block">02 — Projects</span>
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
-        Selected work
+        Hackathon & Personal Projects
       </h2>
     </motion.div>
-
-    <motion.a
-      href="https://protobytes-2-0-team-forsaken.vercel.app/"
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: 0.12 }}
-      whileHover={{ y: -6 }}
-      className="group block section-shell p-7 sm:p-10 mb-8 sm:mb-10"
-    >
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="max-w-2xl">
-          <span className="font-mono text-xs sm:text-sm text-primary mb-3 block">Featured Showcase</span>
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-3">VoiceLink Platform</h3>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
-            A polished SME communication suite with real-time messaging, contact management, and an analytics-rich
-            dashboard designed for speed, clarity, and reliable daily operations.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {hackathonProjects[0].tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full md:w-auto md:min-w-[220px] flex md:justify-end">
-          <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-full font-semibold text-sm">
-            Open Project
-            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </span>
-        </div>
-      </div>
-    </motion.a>
 
     {/* Hackathon Projects */}
     <motion.div
@@ -96,7 +59,7 @@ const ProjectGrid = () => (
     >
       <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Hackathon Projects</h3>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {hackathonProjects.slice(1).map((project, i) => (
+        {hackathonProjects.map((project, i) => (
           <motion.a
             key={project.title}
             href={project.link}

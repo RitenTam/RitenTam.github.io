@@ -23,7 +23,7 @@ const About = () => (
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
-        <div className="glass rounded-2xl p-6 sm:p-8 gradient-border">
+        <div className="glass rounded-2xl p-6 sm:p-8">
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
             Frontend developer with experience building responsive web interfaces using
             HTML, CSS, JavaScript, and React. Active hackathon participant who enjoys

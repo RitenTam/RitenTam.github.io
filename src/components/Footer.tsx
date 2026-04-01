@@ -16,7 +16,7 @@ const Footer = () => (
           href="https://github.com/RitenTam"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-8 h-8 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+          className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
         >
           <Github size={14} />
         </a>
@@ -24,7 +24,7 @@ const Footer = () => (
           href="https://www.linkedin.com/in/ritendra-tamang"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-8 h-8 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-secondary transition-colors"
+          className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors"
         >
           <Linkedin size={14} />
         </a>

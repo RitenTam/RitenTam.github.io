@@ -46,9 +46,9 @@ const Skills = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: i * 0.1 }}
-          className="glass rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 group gradient-border"
+          className="glass rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 group"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-primary/15 to-secondary/15 flex items-center justify-center mb-3 sm:mb-4 group-hover:from-primary/25 group-hover:to-secondary/25 transition-all">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/15 transition-all">
             <group.icon size={17} className="text-primary" />
           </div>
           <h3 className="font-mono text-[10px] sm:text-xs text-primary font-medium uppercase tracking-wider mb-3 sm:mb-4">

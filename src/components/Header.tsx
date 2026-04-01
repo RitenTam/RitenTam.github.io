@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong shadow-lg shadow-background/50" : "bg-transparent"
+        scrolled ? "glass-strong" : "bg-transparent"
       }`}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
@@ -55,7 +55,7 @@ const Header = () => {
             href="https://github.com/RitenTam"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all duration-300"
+            className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
           >
             <Github size={16} />
           </a>
@@ -63,7 +63,7 @@ const Header = () => {
             href="https://www.linkedin.com/in/ritendra-tamang"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-secondary hover:glow-secondary transition-all duration-300"
+            className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
           >
             <Linkedin size={16} />
           </a>
@@ -112,7 +112,7 @@ const Header = () => {
               href="https://www.linkedin.com/in/ritendra-tamang"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-secondary transition-all"
+              className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-primary transition-all"
             >
               <Linkedin size={20} />
             </a>

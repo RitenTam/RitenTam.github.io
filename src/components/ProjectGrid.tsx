@@ -27,6 +27,13 @@ const hackathonProjects = [
 
 const personalProjects = [
   {
+    title: "DesignBuddy",
+    description:
+      "Generates UML and DFD diagrams from user inputs like project title and description using PlantUML and Graphviz.",
+    tags: ["React", "TypeScript", "PlantUML", "Graphviz"],
+    link: "https://dezinebuddy.vercel.app/",
+  },
+  {
     title: "DropSync",
     description:
       "A file synchronization tool that allows seamless syncing of files across multiple devices and platforms.",

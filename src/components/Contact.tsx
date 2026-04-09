@@ -8,7 +8,7 @@ const Contact = () => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5 }}
-      className="text-center"
+      className="text-center section-shell spotlight-card scan-line px-5 sm:px-8 py-10 sm:py-14"
     >
       <span className="font-mono text-primary text-sm mb-2 block">05 — Contact</span>
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">

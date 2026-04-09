@@ -17,17 +17,17 @@ const About = () => (
     >
       <span className="font-mono text-primary text-sm mb-2 block">01 — About</span>
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-10">
-        Building interfaces that feel
+        Building products that feel
         <br className="hidden sm:block" />
         <span className="gradient-text"> like tools, not toys.</span>
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
-        <div className="glass rounded-2xl p-6 sm:p-8">
+        <div className="glass spotlight-card rounded-2xl p-6 sm:p-8">
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            Frontend developer with experience building responsive web interfaces using
-            HTML, CSS, JavaScript, and React. Active hackathon participant who enjoys
-            transforming complex ideas into clean, user-friendly web applications.
+            Full stack developer with experience building responsive web applications using
+            HTML, CSS, JavaScript, React, and backend tooling. Active hackathon participant
+            who enjoys transforming complex ideas into clean, user-friendly products.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ const About = () => (
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              className="glass rounded-xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4 hover:border-primary/30 transition-colors duration-300 group"
+              className="glass spotlight-card rounded-xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4 hover:border-primary/30 transition-colors duration-300 group"
             >
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                 <item.icon size={17} className="text-primary" />

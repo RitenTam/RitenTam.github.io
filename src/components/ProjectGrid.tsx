@@ -5,15 +5,15 @@ const hackathonProjects = [
   {
     title: "VoiceLink",
     description:
-      "SME communication platform with frontend UI for messaging, analytics dashboard, and contact management.",
-    tags: ["React", "TypeScript", "Dashboard", "UI/UX"],
+      "SME communication platform with messaging, analytics dashboard, contact management, and backend coordination.",
+    tags: ["React", "TypeScript", "Dashboard", "Full Stack"],
     link: "https://protobytes-2-0-team-forsaken.vercel.app/",
   },
   {
     title: "Mitra Smart",
     description:
-      "Smart form-filling and document validation system with an intuitive guided user interface.",
-    tags: ["React", "Forms", "Validation", "UX"],
+      "Smart form-filling and document validation system with a guided workflow and API integration.",
+    tags: ["React", "Forms", "Validation", "Full Stack"],
     link: "https://100x-hackathon.vercel.app/",
   },
   {
@@ -77,7 +77,7 @@ const ProjectGrid = () => (
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.12 }}
             whileHover={{ y: -6 }}
-            className="group glass rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
+            className="group glass spotlight-card scan-line rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
           >
             <div className="flex justify-between items-start mb-5 sm:mb-6">
               <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -127,7 +127,7 @@ const ProjectGrid = () => (
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.12 }}
             whileHover={{ y: -6 }}
-            className="group glass rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
+            className="group glass spotlight-card scan-line rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
           >
             <div className="flex justify-between items-start mb-5 sm:mb-6">
               <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">

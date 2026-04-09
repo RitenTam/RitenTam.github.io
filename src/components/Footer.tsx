@@ -1,8 +1,8 @@
 import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => (
-  <footer className="border-t border-border py-6 sm:py-8 px-4 sm:px-6">
-    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+  <footer className="py-6 sm:py-8 px-4 sm:px-6">
+    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 section-shell px-4 sm:px-6 py-4 sm:py-5">
       <div className="flex items-center gap-3 text-sm text-muted-foreground">
         <span>Kathmandu, Nepal</span>
         <span className="relative flex h-2 w-2">

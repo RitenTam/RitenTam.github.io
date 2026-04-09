@@ -1,11 +1,11 @@
 <!-- Dynamic Typing Banner -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=6C63FF&center=true&vCenter=true&width=650&lines=🎨+Pixel+Perfectionist;✨+UI+Magic+Creator;⚡+React+Enthusiast;🚀+Building+Digital+Dreams;💻+Frontend+Craftsman" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=6C63FF&center=true&vCenter=true&width=650&lines=🎨+Pixel+Perfectionist;⚡+Full+Stack+Builder;🚀+Building+Digital+Dreams;💻+Product+Craftsman" alt="Typing SVG" />
 </p>
 
 # 🌟 Hi, I'm Riten 
 
-**🎨 Frontend Wizard • React Fanatic • Design Lover**
+**⚡ Full Stack Wizard • React Fanatic • Product Lover**
 
 I turn coffee into code and designs into experiences.  
 Obsessed with making the web prettier, faster, and just *better*.
@@ -14,8 +14,8 @@ Obsessed with making the web prettier, faster, and just *better*.
 
 ## 🔥 Who Am I?  
 
-- ⚡ **Frontend Engineer** – Building slick, responsive interfaces that don't suck  
-- 🎯 **UI/UX Geek** – If it's not beautiful AND functional, we're not done  
+- ⚡ **Full Stack Engineer** – Building slick, responsive products that don't suck  
+- 🎯 **Product Geek** – If it's not beautiful AND functional, we're not done  
 - 🧩 **Component Architect** – Reusable code is my love language  
 - 🎪 **Animation Junkie** – Making things move smoothly since 2024  
 - 🏗️ **Product Builder** – From prototype to production, I ship it  
@@ -25,7 +25,7 @@ Obsessed with making the web prettier, faster, and just *better*.
 
 ## ⚡ Arsenal  
 
-### 🎨 Frontend Magic  
+### ⚡ Full Stack Magic  
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
@@ -53,7 +53,7 @@ Obsessed with making the web prettier, faster, and just *better*.
 ## 🚀 Current Missions  
 
 - 🎨 **Mastering Advanced React** – Hooks, Context, and all the fancy patterns  
-- ✨ **Animation Playground** – Making websites feel alive with Framer Motion  
+- ✨ **Animation Playground** – Making products feel alive with Framer Motion  
 - 🧠 **TypeScript Integration** – Because type safety is self-care  
 - 📱 **Mobile-First Everything** – If it breaks on mobile, it doesn't ship  
 - 🏆 **100xNepal Prep Mode** – Building the portfolio that'll blow minds  
@@ -65,29 +65,29 @@ Obsessed with making the web prettier, faster, and just *better*.
 
 ### 🎓 **EduConnect Global**  
 > **AI-powered university recommendation platform**  
-- Built responsive UI with React and Tailwind CSS for student/university dashboards  
+- Built responsive product experiences with React and Tailwind CSS for student/university workflows  
 - Integrated Gemini AI API for intelligent university matching based on student profiles  
 - Implemented Supabase backend for authentication and database management  
 - Created document upload system and preference-based filtering  
 - **Stack:** React, Tailwind CSS, Supabase, Gemini AI  
 
 ### ⚡ **[Project Alpha]**  
-> **Modern SaaS Landing Page with Micro-Interactions**  
-- Designed responsive hero sections with smooth scroll animations  
+> **Modern SaaS platform with micro-interactions**  
+- Designed responsive product sections with smooth scroll animations  
 - Implemented dark/light theme toggle with persistent storage  
 - Optimized performance: 95+ Lighthouse score  
 - **Stack:** React, Tailwind CSS, Framer Motion  
 
 ### 🎯 **[Project Beta]**  
-> **Interactive Dashboard with Real-Time Data**  
-- Built dynamic charts and data visualization components  
+> **Interactive platform with real-time data**  
+- Built dynamic charts and data workflow components  
 - Integrated REST APIs with custom hooks  
 - Implemented responsive table with sorting and filtering  
 - **Stack:** React, Chart.js, Axios  
 
 ### 🌈 **[Project Gamma]**  
-> **Portfolio Website with Creative Elements**  
-- Created engaging UI with parallax scrolling effects  
+> **Portfolio platform with creative elements**  
+- Created engaging product flows with parallax scrolling effects  
 - Added smooth page transitions and loading animations  
 - Mobile-optimized with touch gesture support  
 - **Stack:** Next.js, Tailwind, JavaScript  
@@ -112,7 +112,7 @@ Obsessed with making the web prettier, faster, and just *better*.
 
 ```javascript
 const devJourney = {
-  currentLevel: "Frontend Developer",
+  currentLevel: "Full Stack Developer",
   xpGained: "6 months of intense coding",
   
   skills: {
@@ -122,14 +122,14 @@ const devJourney = {
   },
   
   achievements: [
-    "Built 15+ landing pages",
+    "Built 15+ web apps",
     "Created 5 full-stack projects",
     "Integrated AI APIs in production",
     "Applying for 100xNepal 🚀"
   ],
   
   goals2025: {
-    technical: "Master React ecosystem + TypeScript",
+    technical: "Master React ecosystem + TypeScript + APIs + databases",
     creative: "Build mind-blowing portfolio pieces",
     community: "Win hackathons & mentor juniors",
     personal: "Code every single day"

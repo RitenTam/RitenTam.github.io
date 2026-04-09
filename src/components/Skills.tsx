@@ -3,7 +3,7 @@ import { Code2, GitBranch, Palette, Layout } from "lucide-react";
 
 const skillGroups = [
   {
-    category: "Frontend",
+    category: "Full Stack",
     icon: Layout,
     items: ["HTML5", "CSS3", "JavaScript", "React.js", "TypeScript"],
   },
@@ -18,9 +18,9 @@ const skillGroups = [
     items: ["Git", "GitHub", "Trello", "Jira"],
   },
   {
-    category: "Design & Cloud",
+    category: "Backend & Cloud",
     icon: Palette,
-    items: ["Adobe Suite", "Microsoft Office", "Cloud Deployment"],
+    items: ["Supabase", "REST APIs", "Cloud Deployment"],
   },
 ];
 
@@ -46,7 +46,7 @@ const Skills = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: i * 0.1 }}
-          className="glass rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 group"
+          className="glass spotlight-card rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 group"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/15 transition-all">
             <group.icon size={17} className="text-primary" />

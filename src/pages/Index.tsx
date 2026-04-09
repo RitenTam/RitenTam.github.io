@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="relative isolate">
         <Hero />
         <About />
         <ProjectGrid />

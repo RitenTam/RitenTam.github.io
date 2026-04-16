@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Atom, Box, Mail, Server, Sparkles } from "lucide-react";
 import { premiumEaseOut, revealUp } from "@/lib/motion";
 
-const cutoutImage = "/public/hero-cutout.png";
+const cutoutImage = "/hero-cutout.png";
 
 const containerVariants = {
   hidden: {},

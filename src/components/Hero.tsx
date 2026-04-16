@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Atom, Box, Mail, Server, Sparkles } from "lucide-react";
 
-const cutoutImage = "/hero-cutout.png";
+const cutoutImage = "/public/hero-cutout.png";
 
 const containerVariants = {
   hidden: {},
@@ -59,8 +59,6 @@ const Hero = () => {
 
   const imageX = useTransform(springX, [-0.5, 0.5], [-18, 18]);
   const imageY = useTransform(springY, [-0.5, 0.5], [-14, 14]);
-  const glowX = useTransform(springX, [-0.5, 0.5], [-42, 42]);
-  const glowY = useTransform(springY, [-0.5, 0.5], [-28, 28]);
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLElement>) => {
     const bounds = sectionRef.current?.getBoundingClientRect();
@@ -92,9 +90,9 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.05)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
       <div className="absolute inset-0 opacity-40 [background:radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_58%)]" />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-28 lg:px-8">
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
-          <motion.div variants={containerVariants} initial="hidden" animate="show" className="relative z-10 max-w-2xl">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-16 lg:px-8 lg:py-20">
+        <div className="grid w-full items-center gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-end lg:gap-10">
+          <motion.div variants={containerVariants} initial="hidden" animate="show" className="relative z-10 max-w-2xl lg:self-end">
             <motion.div
               variants={itemVariants}
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 backdrop-blur-xl"
@@ -105,26 +103,26 @@ const Hero = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="max-w-xl text-5xl font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[5.3rem] xl:leading-[0.92]"
+              className="max-w-xl text-5xl font-bold leading-[1.1] tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[5.3rem]"
             >
               Build systems, not just websites.
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg lg:text-xl">
+            <motion.p variants={itemVariants} className="mt-6 max-w-[42ch] text-base font-light leading-8 text-[#e2e8f0] sm:text-lg lg:text-xl">
               I design and develop full-stack applications that solve real-world problems.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#7c3aed] px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#6d28d9] hover:shadow-[0_18px_40px_rgba(124,58,237,0.28)]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-semibold text-[#020617] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f5f3ff] hover:shadow-[0_18px_40px_rgba(124,58,237,0.24)]"
               >
                 View Projects
                 <ArrowRight size={18} />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/14 bg-white/5 px-6 py-3.5 font-medium text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-medium text-[#94a3b8] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:text-[#cbd5e1]"
               >
                 Contact Me
                 <Mail size={18} />
@@ -137,32 +135,49 @@ const Hero = () => {
             initial="hidden"
             animate="show"
             style={{ x: imageX, y: imageY }}
-            className="relative mx-auto flex w-full max-w-[38rem] justify-center lg:ml-auto lg:justify-end"
+            className="relative mx-auto flex w-full max-w-[28rem] justify-center pl-8 lg:ml-auto lg:self-end lg:justify-end"
           >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full max-w-[34rem] translate-y-5 lg:max-w-[36rem]"
-            >
-              <div className="pointer-events-none absolute inset-x-12 bottom-4 h-52 rounded-full bg-[#7c3aed]/24 blur-3xl" style={{ x: glowX, y: glowY }} />
-              <div className="pointer-events-none absolute inset-x-20 bottom-10 h-36 rounded-full bg-[#2563eb]/18 blur-2xl" style={{ x: glowX, y: glowY }} />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.92),rgba(2,6,23,0.96))] shadow-[0_34px_120px_rgba(2,6,23,0.62)]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(124,58,237,0.22),transparent_40%),radial-gradient(circle_at_50%_100%,rgba(37,99,235,0.18),transparent_34%)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,rgba(2,6,23,0.52)_100%)]" />
-                {hasImageError ? (
-                  <FallbackPortrait />
-                ) : (
-                  <motion.img
-                    src={cutoutImage}
-                    alt="Portrait cutout of Riten Tam"
-                    className="absolute inset-x-[8%] bottom-0 h-[116%] w-[84%] object-contain object-bottom drop-shadow-[0_30px_60px_rgba(124,58,237,0.26)]"
-                    onError={() => setHasImageError(true)}
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 6.8, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                )}
-                <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]" />
+            <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} className="relative w-fit translate-y-4">
+              <div className="absolute left-[-8%] top-[6%] z-[40] animate-float rounded-2xl border border-white/12 bg-[#0f172a]/85 px-3 py-2 text-white/88 backdrop-blur-md" style={{ animationDuration: "6.2s" }}>
+                <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em]">
+                  <Server size={14} className="text-[#7dd3fc]" />
+                  Node
+                </span>
               </div>
+
+              <div className="absolute right-[-10%] top-[42%] z-[40] -translate-y-1/2 animate-float rounded-2xl border border-[#c4b5fd]/40 bg-[#111827]/90 px-4 py-2 text-white backdrop-blur-md" style={{ animationDelay: "0.8s", animationDuration: "5.8s" }}>
+                <span className="flex items-center gap-2 text-sm font-semibold tracking-wide">
+                  <Atom size={15} className="text-[#c4b5fd]" />
+                  React
+                </span>
+              </div>
+
+              <div className="absolute bottom-[14%] right-[-2%] z-[15] animate-float rounded-2xl border border-white/12 bg-[#0f172a]/85 px-3 py-2 text-white/88 backdrop-blur-md" style={{ animationDelay: "1.8s", animationDuration: "6.8s" }}>
+                <span className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em]">
+                  <Box size={14} className="text-[#f97316]" />
+                  Bun
+                </span>
+              </div>
+
+              {hasImageError ? (
+                <div className="relative z-[20] h-[300px] w-[230px] max-w-[80vw] sm:h-[360px] sm:w-[280px] lg:h-[450px] lg:w-[340px]">
+                  <FallbackPortrait />
+                </div>
+              ) : (
+                <motion.img
+                  src={cutoutImage}
+                  alt="Portrait cutout of Riten Tam"
+                  className="relative z-[20] h-auto w-auto max-h-[300px] max-w-[80vw] object-contain object-bottom sm:max-h-[360px] lg:max-h-[450px]"
+                  style={{
+                    maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+                    filter: "drop-shadow(0 0 30px rgba(168, 85, 247, 0.3))",
+                  }}
+                  onError={() => setHasImageError(true)}
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 6.8, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
             </motion.div>
           </motion.div>
         </div>

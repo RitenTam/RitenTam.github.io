@@ -35,8 +35,33 @@ const Contact = () => {
     const maxLeft = Math.max(gameArea.clientWidth - stickyNote.offsetWidth, 0);
     const maxTop = Math.max(gameArea.clientHeight - stickyNote.offsetHeight, 0);
 
-    const nextLeftPx = Math.random() * maxLeft;
-    const nextTopPx = Math.random() * maxTop;
+    const currentLeftPx = (notePosition.left / 100) * gameArea.clientWidth;
+    const currentTopPx = (notePosition.top / 100) * gameArea.clientHeight;
+
+    const movementDiagonal = Math.hypot(maxLeft, maxTop);
+    const minimumDistance = Math.min(Math.max(movementDiagonal * 0.38, 90), 190);
+
+    let nextLeftPx = 0;
+    let nextTopPx = 0;
+    let bestDistance = -1;
+
+    for (let attempt = 0; attempt < 18; attempt += 1) {
+      const candidateLeft = Math.random() * maxLeft;
+      const candidateTop = Math.random() * maxTop;
+      const distance = Math.hypot(candidateLeft - currentLeftPx, candidateTop - currentTopPx);
+
+      if (distance > bestDistance) {
+        bestDistance = distance;
+        nextLeftPx = candidateLeft;
+        nextTopPx = candidateTop;
+      }
+
+      if (distance >= minimumDistance) {
+        nextLeftPx = candidateLeft;
+        nextTopPx = candidateTop;
+        break;
+      }
+    }
 
     const nextLeftPercent = gameArea.clientWidth > 0 ? (nextLeftPx / gameArea.clientWidth) * 100 : 0;
     const nextTopPercent = gameArea.clientHeight > 0 ? (nextTopPx / gameArea.clientHeight) * 100 : 0;
@@ -45,7 +70,7 @@ const Contact = () => {
 
     const randomMessage = NOTE_MESSAGES[Math.floor(Math.random() * NOTE_MESSAGES.length)];
     setNoteMessage(randomMessage);
-  }, [isCaught]);
+  }, [isCaught, notePosition.left, notePosition.top]);
 
   const handleContactClick = useCallback(() => {
     setIsCaught(true);
@@ -78,6 +103,7 @@ const Contact = () => {
                 ref={stickyNoteRef}
                 type="button"
                 onMouseEnter={runAway}
+                  onMouseMove={runAway}
                 onClick={runAway}
                 className="absolute w-[170px] sm:w-[182px] min-h-[112px] rounded-sm border border-amber-300/80 bg-amber-200 px-4 py-3 text-left shadow-[0_10px_26px_rgba(42,32,10,0.26)] hover:rotate-1"
                 style={{

@@ -45,18 +45,18 @@ const Header = () => {
   return (
     <header className="fixed top-3 left-0 right-0 z-50 px-3 sm:px-5">
       <nav
-        className={`mx-auto max-w-6xl transition-all duration-500 rounded-2xl border px-4 sm:px-6 py-3 sm:py-4 ${
+        className={`mx-auto max-w-6xl transition-all duration-500 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 ${
           scrolled
-            ? "glass-strong border-primary/20 shadow-[0_14px_30px_rgba(7,49,61,0.22)]"
-            : "bg-card/45 border-border/50 backdrop-blur-lg"
+            ? "glass-strong border-transparent shadow-[0_14px_30px_rgba(7,49,61,0.22)]"
+            : "bg-card/45 backdrop-blur-lg"
         }`}
       >
         <div className="flex items-center justify-between gap-4">
           <a href="#" className="font-heading text-xl sm:text-2xl tracking-tight text-foreground relative z-50">
-            RT<span className="text-primary">//</span>
+            RT
           </a>
 
-          <ul className="hidden md:flex items-center gap-2 bg-background/55 border border-border/70 rounded-full px-2 py-1">
+          <ul className="hidden md:flex items-center gap-2 bg-background/55 rounded-full px-2 py-1">
             {navItems.map((item) => (
               <li key={item.label}>
                 <a
@@ -72,7 +72,7 @@ const Header = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="w-9 h-9 rounded-lg glass border-transparent flex items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
               aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
               title={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
@@ -82,7 +82,7 @@ const Header = () => {
               href="https://github.com/RitenTam"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden sm:flex w-9 h-9 rounded-lg glass border-transparent items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
             >
               <Github size={16} />
             </a>
@@ -90,7 +90,7 @@ const Header = () => {
               href="https://www.linkedin.com/in/ritendra-tamang"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex w-9 h-9 rounded-lg glass items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden sm:flex w-9 h-9 rounded-lg glass border-transparent items-center justify-center text-muted-foreground hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
             >
               <Linkedin size={16} />
             </a>
@@ -102,7 +102,7 @@ const Header = () => {
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-10 h-10 rounded-xl glass flex items-center justify-center text-foreground relative z-50"
+              className="md:hidden w-10 h-10 rounded-xl glass border-transparent flex items-center justify-center text-foreground relative z-50"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}

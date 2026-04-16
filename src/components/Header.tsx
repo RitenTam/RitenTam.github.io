@@ -17,8 +17,7 @@ const Header = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const useDark = savedTheme ? savedTheme === "dark" : prefersDark;
+    const useDark = savedTheme ? savedTheme === "dark" : true;
 
     document.documentElement.classList.toggle("dark", useDark);
     setIsDark(useDark);

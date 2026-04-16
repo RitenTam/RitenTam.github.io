@@ -1,112 +1,132 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, ArrowDown, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, Sparkles } from "lucide-react";
+
+const Scene = lazy(() => import("./Scene"));
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const floatingDots = [
+  { top: "12%", left: "10%", size: "0.4rem", delay: 0 },
+  { top: "18%", left: "78%", size: "0.55rem", delay: 0.6 },
+  { top: "34%", left: "86%", size: "0.35rem", delay: 1.2 },
+  { top: "68%", left: "14%", size: "0.45rem", delay: 0.9 },
+  { top: "76%", left: "82%", size: "0.5rem", delay: 1.5 },
+];
+
+const SceneFallback = () => (
+  <div className="flex h-full min-h-[420px] items-center justify-center rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_80px_rgba(2,6,23,0.35)]">
+    <div className="space-y-5 text-center">
+      <div className="mx-auto h-3 w-32 rounded-full bg-white/10 animate-pulse" />
+      <div className="relative mx-auto h-72 w-[20rem] rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03))] shadow-[0_0_120px_rgba(56,189,248,0.15)]">
+        <div className="absolute inset-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03]" />
+      </div>
+      <p className="text-xs uppercase tracking-[0.3em] text-white/45">Loading 3D scene</p>
+    </div>
+  </div>
+);
 
 const Hero = () => (
-  <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 max-w-6xl mx-auto pt-28 sm:pt-32 pb-10 relative overflow-hidden">
-    <div className="absolute inset-0 grid-lines" />
-    <div className="absolute top-10 sm:top-20 -left-20 sm:-left-40 w-52 sm:w-96 h-52 sm:h-96 bg-primary/20 rounded-full blur-[100px] sm:blur-[140px] animate-pulse-glow" />
-    <div
-      className="absolute bottom-14 sm:bottom-20 -right-24 sm:-right-32 w-60 sm:w-[28rem] h-60 sm:h-[28rem] bg-accent/30 rounded-full blur-[100px] sm:blur-[140px] animate-pulse-glow"
-      style={{ animationDelay: "1.4s" }}
-    />
+  <section className="relative min-h-screen overflow-hidden bg-[#050816] text-white">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.16),transparent_30%),radial-gradient(circle_at_80%_15%,rgba(168,85,247,0.18),transparent_30%),radial-gradient(circle_at_75%_75%,rgba(14,165,233,0.12),transparent_25%),linear-gradient(145deg,#030712_0%,#050816_45%,#0f172a_100%)]" />
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:56px_56px] opacity-20 [mask-image:radial-gradient(circle_at_center,black,transparent_80%)]" />
+    <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />
 
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="relative z-10 section-shell spotlight-card scan-line p-7 sm:p-10 md:p-14"
-    >
-      <div className="absolute -top-14 -right-10 hidden sm:block w-44 h-44 rounded-full border border-primary/25 animate-[spin_18s_linear_infinite]" />
-
+    {floatingDots.map((dot) => (
       <motion.span
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="inline-flex items-center gap-2 font-mono text-primary font-medium tracking-tight text-xs sm:text-sm mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/30"
-      >
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-        </span>
-        Available for new opportunities
-      </motion.span>
+        key={`${dot.top}-${dot.left}`}
+        aria-hidden="true"
+        className="absolute rounded-full bg-cyan-200/80 shadow-[0_0_18px_rgba(103,232,249,0.55)]"
+        style={{ top: dot.top, left: dot.left, width: dot.size, height: dot.size }}
+        animate={{ opacity: [0.22, 0.8, 0.22], scale: [1, 1.22, 1], y: [0, -8, 0] }}
+        transition={{ duration: 5 + dot.delay, delay: dot.delay, repeat: Infinity, ease: "easeInOut" }}
+      />
+    ))}
 
-      <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 sm:mb-6 text-balance leading-[1.03]">
-        <span className="text-foreground">Hi, I&apos;m </span>
-        <span className="gradient-text">Ritendra</span>
-        <span className="text-foreground">,</span>
-        <br className="hidden sm:block" />
-        <span className="text-foreground/90">building products with </span>
-        <span className="font-heading">edge + clarity.</span>
-      </h1>
-
-      <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 sm:mb-10">
-        Full stack developer based in Kathmandu. I turn rough ideas into high-performance,
-        visual-first products that feel crafted, fast, and unmistakably modern.
-      </p>
-
-      <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
-        {["React", "TypeScript", "Motion", "Full Stack"].map((item) => (
-          <span
-            key={item}
-            className="px-3 py-1.5 rounded-full text-xs sm:text-sm font-mono border border-primary/30 bg-primary/10 text-primary"
+    <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-28 lg:px-8">
+      <div className="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <motion.div variants={containerVariants} initial="hidden" animate="show" className="relative z-10 max-w-2xl">
+          <motion.div
+            variants={itemVariants}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 backdrop-blur-xl"
           >
-            {item}
-          </span>
-        ))}
-      </div>
+            <Sparkles size={14} className="text-cyan-300" />
+            Premium full-stack portfolio
+          </motion.div>
 
-      <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4">
-        <a
-          href="#projects"
-          className="w-full sm:w-auto text-center bg-primary text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold glow-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
-        >
-          View Projects
-        </a>
-        <a
-          href="mailto:ritendratam404@gmail.com"
-          className="w-full sm:w-auto text-center bg-card border border-border px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-foreground hover:border-primary/40 transition-all duration-300 hover:-translate-y-0.5"
-        >
-          Get in touch
-        </a>
-        <span className="hidden md:inline-flex items-center gap-2 text-muted-foreground text-sm">
-          <Sparkles size={16} className="text-primary" />
-          Open to freelance + full-time
-        </span>
-        <div className="flex items-center gap-2 mt-1 sm:mt-0 sm:ml-2">
-          <a
-            href="https://github.com/RitenTam"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
+          <motion.h1
+            variants={itemVariants}
+            className="max-w-xl text-5xl font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[5rem] xl:leading-[0.94]"
           >
-            <Github size={18} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ritendra-tamang"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300"
-          >
-            <Linkedin size={18} />
-          </a>
+            Build systems, not just websites.
+          </motion.h1>
+
+          <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg lg:text-xl">
+            I design and develop full-stack applications that solve real-world problems.
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3.5 font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(148,163,184,0.22)]"
+            >
+              View Projects
+              <ArrowRight size={18} />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/8 px-6 py-3.5 font-medium text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-white/12"
+            >
+              Contact Me
+              <Mail size={18} />
+            </a>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/65 backdrop-blur-xl">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]" />
+            Smooth motion, subtle depth, and responsive performance.
+          </motion.div>
+        </motion.div>
+
+        <div className="relative flex min-h-[460px] items-center justify-center lg:min-h-[720px]">
+          <div className="pointer-events-none absolute inset-8 rounded-full bg-cyan-400/20 blur-3xl opacity-70" />
+          <div className="pointer-events-none absolute inset-x-10 top-10 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" />
+          <div className="relative h-[420px] w-full max-w-[720px] sm:h-[480px] lg:h-[620px]">
+            <Suspense fallback={<SceneFallback />}>
+              <Scene />
+            </Suspense>
+          </div>
         </div>
       </div>
-    </motion.div>
 
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.2, duration: 0.8 }}
-      className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2"
-    >
-      <a
-        href="#about"
-        className="text-muted-foreground hover:text-primary transition-colors animate-float w-11 h-11 rounded-full border border-border/80 bg-card/70 backdrop-blur-lg flex items-center justify-center"
+      <motion.a
+        href="#projects"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.32em] text-white/60 backdrop-blur-xl transition-transform duration-300 hover:-translate-y-0.5"
       >
-        <ArrowDown size={20} />
-      </a>
-    </motion.div>
+        <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.8)]" />
+        Scroll
+      </motion.a>
+    </div>
   </section>
 );
 

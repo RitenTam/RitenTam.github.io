@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -95,10 +95,10 @@
     @apply font-sans bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     background-image:
-      radial-gradient(circle at 8% 14%, hsl(188 84% 46% / 0.26), transparent 35%),
-      radial-gradient(circle at 88% 2%, hsl(24 96% 62% / 0.2), transparent 28%),
-      radial-gradient(circle at 86% 76%, hsl(194 72% 38% / 0.16), transparent 32%),
-      linear-gradient(140deg, hsl(36 86% 97%) 0%, hsl(176 49% 96%) 47%, hsl(39 100% 97%) 100%);
+      radial-gradient(circle at 12% 12%, hsl(265 85% 60% / 0.18), transparent 30%),
+      radial-gradient(circle at 86% 10%, hsl(218 90% 57% / 0.15), transparent 26%),
+      radial-gradient(circle at 78% 82%, hsl(264 82% 56% / 0.12), transparent 30%),
+      linear-gradient(180deg, hsl(222 47% 7%) 0%, hsl(222 47% 7%) 100%);
     background-attachment: fixed;
     min-height: 100vh;
     overflow-x: hidden;
@@ -106,10 +106,10 @@
 
   .dark body {
     background-image:
-      radial-gradient(circle at 13% 16%, hsl(188 85% 56% / 0.22), transparent 36%),
-      radial-gradient(circle at 84% 8%, hsl(25 95% 64% / 0.16), transparent 28%),
-      radial-gradient(circle at 90% 74%, hsl(194 82% 48% / 0.15), transparent 28%),
-      linear-gradient(150deg, hsl(197 32% 8%) 0%, hsl(195 31% 7%) 42%, hsl(204 28% 8%) 100%);
+      radial-gradient(circle at 12% 12%, hsl(265 85% 60% / 0.18), transparent 30%),
+      radial-gradient(circle at 86% 10%, hsl(218 90% 57% / 0.15), transparent 26%),
+      radial-gradient(circle at 78% 82%, hsl(264 82% 56% / 0.12), transparent 30%),
+      linear-gradient(180deg, hsl(222 47% 7%) 0%, hsl(222 47% 7%) 100%);
   }
 
   h1,

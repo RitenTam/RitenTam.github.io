@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Atom, Box, Mail, Server, Sparkles } from "lucide-react";
+import { premiumEaseOut, revealUp } from "@/lib/motion";
 
 const cutoutImage = "/public/hero-cutout.png";
 
@@ -15,23 +16,22 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 22 },
+const itemVariants = revealUp;
+
+const headlineVariants = {
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, ease: premiumEaseOut },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, x: 36, y: 24, scale: 0.98 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.12 },
+    transition: { duration: 0.8, ease: premiumEaseOut, delay: 0.5 },
   },
 };
 
@@ -102,7 +102,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.h1
-              variants={itemVariants}
+              variants={headlineVariants}
               className="max-w-xl text-5xl font-bold leading-[1.1] tracking-tight text-balance sm:text-6xl lg:text-7xl xl:text-[5.3rem]"
             >
               Build systems, not just websites.

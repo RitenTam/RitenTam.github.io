@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Trophy, Code2, Zap } from "lucide-react";
+import { inViewSettings, revealUp, staggerContainer } from "@/lib/motion";
 
 const hackathons = [
   {
@@ -27,16 +28,11 @@ const hackathons = [
 
 const Hackathons = () => (
   <section id="hackathons" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer}>
       <span className="font-mono text-primary text-sm mb-2 block">04 — Hackathon Journey</span>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
+      <motion.h2 variants={revealUp} className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
         Competition experience
-      </h2>
+      </motion.h2>
     </motion.div>
 
     {/* Timeline */}
@@ -44,14 +40,11 @@ const Hackathons = () => (
       {/* Timeline line */}
       <div className="absolute left-[18px] sm:left-5 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent" />
 
-      <div className="space-y-4 sm:space-y-6">
-        {hackathons.map((h, i) => (
+      <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer} className="space-y-4 sm:space-y-6">
+        {hackathons.map((h) => (
           <motion.div
             key={h.name}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
+            variants={revealUp}
             className="flex items-start gap-4 sm:gap-6 pl-10 sm:pl-14 relative"
           >
             {/* Timeline dot */}
@@ -76,7 +69,7 @@ const Hackathons = () => (
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </section>
 );

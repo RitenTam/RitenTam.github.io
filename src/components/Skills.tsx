@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, GitBranch, Palette, Layout } from "lucide-react";
+import { inViewSettings, revealUp, staggerContainer } from "@/lib/motion";
 
 const skillGroups = [
   {
@@ -26,26 +27,18 @@ const skillGroups = [
 
 const Skills = () => (
   <section id="skills" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer}>
       <span className="font-mono text-primary text-sm mb-2 block">03 — Technical Index</span>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
+      <motion.h2 variants={revealUp} className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
         Skills & tools
-      </h2>
+      </motion.h2>
     </motion.div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-      {skillGroups.map((group, i) => (
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+      {skillGroups.map((group) => (
         <motion.div
           key={group.category}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: i * 0.1 }}
+          variants={revealUp}
           className="glass spotlight-card rounded-2xl p-4 sm:p-6 hover:border-primary/30 transition-all duration-300 group"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/15 transition-all">
@@ -64,7 +57,7 @@ const Skills = () => (
           </ul>
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   </section>
 );
 

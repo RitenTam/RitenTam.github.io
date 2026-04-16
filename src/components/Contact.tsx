@@ -1,31 +1,34 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { inViewSettings, revealUp, staggerContainer } from "@/lib/motion";
 
 const Contact = () => (
   <section id="contact" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5 }}
+      initial="hidden"
+      whileInView="show"
+      viewport={inViewSettings}
+      variants={staggerContainer}
       className="text-center section-shell spotlight-card scan-line px-5 sm:px-8 py-10 sm:py-14"
     >
       <span className="font-mono text-primary text-sm mb-2 block">05 — Contact</span>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+      <motion.h2 variants={revealUp} className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
         Let's work <span className="gradient-text">together</span>
-      </h2>
-      <p className="text-muted-foreground max-w-md mx-auto mb-8 sm:mb-10 text-sm sm:text-base">
+      </motion.h2>
+      <motion.p variants={revealUp} className="text-muted-foreground max-w-md mx-auto mb-8 sm:mb-10 text-sm sm:text-base">
         I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-      </p>
-      <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-        <a
+      </motion.p>
+      <motion.div variants={staggerContainer} className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+        <motion.a
+          variants={revealUp}
           href="mailto:ritendratam404@gmail.com"
           className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-300"
         >
           <Mail size={16} />
           Say Hello
-        </a>
-        <a
+        </motion.a>
+        <motion.a
+          variants={revealUp}
           href="https://github.com/RitenTam"
           target="_blank"
           rel="noopener noreferrer"
@@ -34,8 +37,9 @@ const Contact = () => (
           <Github size={16} />
           GitHub
           <ArrowUpRight size={14} className="text-muted-foreground" />
-        </a>
-        <a
+        </motion.a>
+        <motion.a
+          variants={revealUp}
           href="https://www.linkedin.com/in/ritendra-tamang"
           target="_blank"
           rel="noopener noreferrer"
@@ -44,8 +48,8 @@ const Contact = () => (
           <Linkedin size={16} />
           LinkedIn
           <ArrowUpRight size={14} className="text-muted-foreground" />
-        </a>
-      </div>
+        </motion.a>
+      </motion.div>
     </motion.div>
   </section>
 );

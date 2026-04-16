@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { inViewSettings, revealUp, staggerContainer } from "@/lib/motion";
 
 const hackathonProjects = [
   {
@@ -44,38 +45,26 @@ const personalProjects = [
 
 const ProjectGrid = () => (
   <section id="projects" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5 }}
-    >
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer}>
       <span className="font-mono text-primary text-sm mb-2 block">02 — Projects</span>
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
+      <motion.h2 variants={revealUp} className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-8 sm:mb-12">
         Hackathon & Personal Projects
-      </h2>
+      </motion.h2>
     </motion.div>
 
     {/* Hackathon Projects */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="mb-16"
-    >
-      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Hackathon Projects</h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {hackathonProjects.map((project, i) => (
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer} className="mb-16">
+      <motion.h3 variants={revealUp} className="text-xl sm:text-2xl font-bold text-foreground mb-6">
+        Hackathon Projects
+      </motion.h3>
+      <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {hackathonProjects.map((project) => (
           <motion.a
             key={project.title}
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
+            variants={revealUp}
             whileHover={{ y: -6 }}
             className="group glass spotlight-card scan-line rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
           >
@@ -104,28 +93,22 @@ const ProjectGrid = () => (
             </div>
           </motion.a>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
 
     {/* Personal Projects */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: 0.4 }}
-    >
-      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Personal Projects</h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {personalProjects.map((project, i) => (
+    <motion.div initial="hidden" whileInView="show" viewport={inViewSettings} variants={staggerContainer}>
+      <motion.h3 variants={revealUp} className="text-xl sm:text-2xl font-bold text-foreground mb-6">
+        Personal Projects
+      </motion.h3>
+      <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {personalProjects.map((project) => (
           <motion.a
             key={project.title}
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
+            variants={revealUp}
             whileHover={{ y: -6 }}
             className="group glass spotlight-card scan-line rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-primary/30"
           >
@@ -154,7 +137,7 @@ const ProjectGrid = () => (
             </div>
           </motion.a>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   </section>
 );

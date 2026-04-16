@@ -1,8 +1,16 @@
 import { Github, Linkedin } from "lucide-react";
+import { motion } from "framer-motion";
+import { inViewSettings, revealUp } from "@/lib/motion";
 
 const Footer = () => (
   <footer className="py-6 sm:py-8 px-4 sm:px-6">
-    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 section-shell px-4 sm:px-6 py-4 sm:py-5">
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={inViewSettings}
+      variants={revealUp}
+      className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 section-shell px-4 sm:px-6 py-4 sm:py-5"
+    >
       <div className="flex items-center gap-3 text-sm text-muted-foreground">
         <span>Kathmandu, Nepal</span>
         <span className="relative flex h-2 w-2">
@@ -33,7 +41,7 @@ const Footer = () => (
       <p className="text-xs sm:text-sm text-muted-foreground">
         © {new Date().getFullYear()} Ritendra Tamang
       </p>
-    </div>
+    </motion.div>
   </footer>
 );
 

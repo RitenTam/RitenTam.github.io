@@ -47,7 +47,7 @@ const Header = () => {
       <nav
         className={`relative mx-auto max-w-7xl border-0 shadow-none transition-all duration-500 px-6 py-3 lg:px-8 sm:py-4 ${
           scrolled
-            ? "bg-[rgba(0,0,0,0.05)] backdrop-blur-[10px]"
+            ? "bg-[rgba(255,255,255,0.5)] backdrop-blur-[10px] dark:bg-[rgba(0,0,0,0.2)]"
             : "bg-transparent"
         }`}
       >
@@ -66,7 +66,7 @@ const Header = () => {
               <li key={item.label}>
                 <a
                   href={item.href}
-                  className="px-3 py-2 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-white/10 transition-all duration-300"
+                  className="px-3 py-2 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 transition-all duration-300 dark:hover:bg-white/10"
                 >
                   {item.label}
                 </a>
@@ -77,7 +77,7 @@ const Header = () => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg border-0 bg-transparent shadow-none flex items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="w-9 h-9 rounded-lg border-0 bg-transparent shadow-none flex items-center justify-center text-muted-foreground hover:bg-black/5 hover:text-primary hover:-translate-y-0.5 transition-all duration-300 dark:hover:bg-white/10"
               aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
               title={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
@@ -87,7 +87,7 @@ const Header = () => {
               href="https://github.com/RitenTam"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex w-9 h-9 rounded-lg border-0 bg-transparent shadow-none items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden sm:flex w-9 h-9 rounded-lg border-0 bg-transparent shadow-none items-center justify-center text-muted-foreground hover:bg-black/5 hover:text-primary hover:-translate-y-0.5 transition-all duration-300 dark:hover:bg-white/10"
             >
               <Github size={16} />
             </a>
@@ -95,19 +95,19 @@ const Header = () => {
               href="https://www.linkedin.com/in/ritendra-tamang"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex w-9 h-9 rounded-lg border-0 bg-transparent shadow-none items-center justify-center text-muted-foreground hover:bg-white/10 hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden sm:flex w-9 h-9 rounded-lg border-0 bg-transparent shadow-none items-center justify-center text-muted-foreground hover:bg-black/5 hover:text-primary hover:-translate-y-0.5 transition-all duration-300 dark:hover:bg-white/10"
             >
               <Linkedin size={16} />
             </a>
             <a
               href="#contact"
-              className="hidden lg:inline-flex items-center rounded-full bg-foreground text-background px-4 py-2 text-sm font-semibold hover:-translate-y-0.5 transition-all duration-300"
+              className="hidden lg:inline-flex items-center rounded-full bg-white text-[#3b1d68] px-4 py-2 text-sm font-semibold shadow-[0_8px_26px_rgba(59,29,104,0.18)] hover:-translate-y-0.5 transition-all duration-300 dark:bg-foreground dark:text-background dark:shadow-none"
             >
               Reach out
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-10 h-10 rounded-xl border-0 bg-transparent shadow-none flex items-center justify-center text-foreground hover:bg-white/10 relative z-50"
+              className="md:hidden w-10 h-10 rounded-xl border-0 bg-transparent shadow-none flex items-center justify-center text-foreground hover:bg-black/5 dark:hover:bg-white/10 relative z-50"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}

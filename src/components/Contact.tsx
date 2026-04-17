@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { inViewSettings, revealUp, staggerContainer } from "@/lib/motion";
 
 const NOTE_MESSAGES = [
-  "Rematch?",
+  "Let's connect",
   "Couldn't catch me there?",
   "Too slow!",
   "Try again?",

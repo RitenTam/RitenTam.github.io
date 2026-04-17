@@ -302,6 +302,25 @@
   .reveal-up {
     animation: reveal-up 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .hero-stars {
+    overflow: hidden;
+  }
+
+  .hero-star {
+    position: absolute;
+    display: block;
+    border-radius: 9999px;
+    will-change: transform, opacity;
+    animation-name: hero-star-float, hero-star-twinkle;
+    animation-iteration-count: infinite, infinite;
+    animation-timing-function: ease-in-out, ease-in-out;
+    animation-direction: alternate, alternate;
+  }
+
+  .animate-hero-glow {
+    animation: hero-glow-pulse 8s ease-in-out infinite;
+  }
 }
 
 @keyframes scan {
@@ -326,12 +345,59 @@
   }
 }
 
+@keyframes hero-star-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, calc(var(--float-offset, 8px) * -1), 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-star-twinkle {
+  0% {
+    opacity: 0.22;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes hero-glow-pulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.62;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: scale(0.98);
+    opacity: 0.7;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scan-line::before,
   .animate-ping,
   .animate-float,
   .animate-pulse-glow,
-  .reveal-up {
+  .reveal-up,
+  .hero-star,
+  .animate-hero-glow {
     animation: none !important;
   }
 }

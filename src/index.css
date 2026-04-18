@@ -307,6 +307,37 @@
     overflow: hidden;
   }
 
+  .hero-space-stars-hd {
+    pointer-events: none;
+    opacity: 0.8;
+    mix-blend-mode: screen;
+    background-image:
+      radial-gradient(circle at 7% 12%, rgba(255, 255, 255, 0.9) 0.6px, transparent 1.4px),
+      radial-gradient(circle at 16% 38%, rgba(255, 255, 255, 0.7) 0.8px, transparent 1.6px),
+      radial-gradient(circle at 25% 84%, rgba(196, 181, 253, 0.72) 0.7px, transparent 1.5px),
+      radial-gradient(circle at 35% 22%, rgba(255, 255, 255, 0.85) 0.6px, transparent 1.4px),
+      radial-gradient(circle at 48% 66%, rgba(167, 139, 250, 0.66) 0.7px, transparent 1.7px),
+      radial-gradient(circle at 61% 16%, rgba(255, 255, 255, 0.84) 0.8px, transparent 1.5px),
+      radial-gradient(circle at 71% 49%, rgba(255, 255, 255, 0.7) 0.75px, transparent 1.55px),
+      radial-gradient(circle at 83% 29%, rgba(196, 181, 253, 0.76) 0.7px, transparent 1.5px),
+      radial-gradient(circle at 91% 72%, rgba(255, 255, 255, 0.8) 0.8px, transparent 1.6px),
+      radial-gradient(circle at 56% 88%, rgba(255, 255, 255, 0.75) 0.7px, transparent 1.5px);
+    animation: hero-space-drift 36s ease-in-out infinite alternate;
+  }
+
+  .hero-noise {
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.14) 0.6px, transparent 0.6px),
+      radial-gradient(circle at 72% 38%, rgba(196, 181, 253, 0.1) 0.65px, transparent 0.65px),
+      radial-gradient(circle at 42% 78%, rgba(148, 163, 184, 0.1) 0.55px, transparent 0.55px),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 4px);
+    background-size: 170px 170px, 210px 210px, 190px 190px, 4px 4px;
+    background-position: 0 0, 36px 26px, 72px 94px, 0 0;
+    opacity: 0.18;
+    mix-blend-mode: screen;
+  }
+
   .hero-star {
     position: absolute;
     display: block;
@@ -320,6 +351,10 @@
 
   .animate-hero-glow {
     animation: hero-glow-pulse 8s ease-in-out infinite;
+  }
+
+  .animate-hero-core-glow {
+    animation: hero-core-glow-float 24s ease-in-out infinite;
   }
 }
 
@@ -361,15 +396,29 @@
 
 @keyframes hero-star-twinkle {
   0% {
-    opacity: 0.22;
+    opacity: 0.18;
   }
 
   50% {
-    opacity: 0.9;
+    opacity: 0.95;
   }
 
   100% {
-    opacity: 0.35;
+    opacity: 0.32;
+  }
+}
+
+@keyframes hero-space-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-0.7%, -1.1%, 0) scale(1.02);
+  }
+
+  100% {
+    transform: translate3d(0.6%, 0.8%, 0) scale(1.015);
   }
 }
 
@@ -390,6 +439,20 @@
   }
 }
 
+@keyframes hero-core-glow-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(6px, -8px, 0);
+  }
+
+  100% {
+    transform: translate3d(-4px, 5px, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scan-line::before,
   .animate-ping,
@@ -397,7 +460,9 @@
   .animate-pulse-glow,
   .reveal-up,
   .hero-star,
-  .animate-hero-glow {
+  .animate-hero-glow,
+  .animate-hero-core-glow,
+  .hero-space-stars-hd {
     animation: none !important;
   }
 }

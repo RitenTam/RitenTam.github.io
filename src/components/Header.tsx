@@ -32,50 +32,42 @@ const Header = () => {
   }, [mobileOpen]);
 
   return (
-    <header className="fixed left-0 right-0 top-4 z-50 px-4 sm:px-6">
-      <nav
-        className={`relative mx-auto max-w-7xl rounded-full border px-5 py-3 transition-all duration-500 sm:px-7 ${
-          scrolled
-            ? "border-white/20 bg-[#0f172a]/65 shadow-[0_12px_50px_rgba(2,6,23,0.75)] backdrop-blur-2xl"
-            : "border-white/12 bg-[#0b1229]/40 backdrop-blur-xl"
-        }`}
-      >
-        <div className="flex items-center justify-between gap-4">
-          <a href="#" className="relative z-50 font-heading text-[1.65rem] tracking-tight text-[#e2e8f0]">
-            RT//
+    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex max-w-fit items-center justify-between gap-4 rounded-full border-[0.5px] border-white/10 bg-neutral-900/40 px-6 py-3 backdrop-blur-md transition-all duration-500">
+      <nav className="flex w-full items-center justify-between gap-4">
+        <a href="#" className="relative z-50 font-heading text-[1.5rem] tracking-tight text-[#e2e8f0] sm:text-[1.75rem]">
+          RT//
+        </a>
+
+        <ul className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                className="rounded-full px-4 py-2 text-sm font-medium text-[#cbd5e1] transition-colors duration-300 hover:text-white"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#cbd5e1] sm:flex">
+            <Sparkles size={14} />
+          </span>
+          <a
+            href="#contact"
+            className="hidden items-center rounded-full border border-[#a78bfa]/45 bg-gradient-to-r from-[#f8f7ff] to-[#ede9fe] px-5 py-2 text-sm font-semibold text-[#1e1b4b] shadow-[0_0_0_1px_rgba(255,255,255,0.6)_inset,0_10px_34px_rgba(124,58,237,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_42px_rgba(124,58,237,0.52)] lg:inline-flex"
+          >
+            Reach out
           </a>
-
-          <ul className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-[#cbd5e1] transition-colors duration-300 hover:text-white"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#cbd5e1] sm:flex">
-              <Sparkles size={14} />
-            </span>
-            <a
-              href="#contact"
-              className="hidden items-center rounded-full border border-[#a78bfa]/45 bg-gradient-to-r from-[#f8f7ff] to-[#ede9fe] px-5 py-2 text-sm font-semibold text-[#1e1b4b] shadow-[0_0_0_1px_rgba(255,255,255,0.6)_inset,0_10px_34px_rgba(124,58,237,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_42px_rgba(124,58,237,0.52)] lg:inline-flex"
-            >
-              Reach out
-            </a>
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#e2e8f0] md:hidden"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#e2e8f0] md:hidden"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
 

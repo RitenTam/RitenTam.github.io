@@ -1,5 +1,5 @@
-import { useState, type CSSProperties } from "react";
-import { motion } from "framer-motion";
+import { useState, type CSSProperties, type MouseEvent } from "react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { premiumEaseOut } from "@/lib/motion";
 
@@ -12,40 +12,79 @@ type StarParticle = {
   size: number;
   opacity: number;
   color: string;
+  glowStrength: number;
   delay: number;
   twinkleDuration: number;
   floatDuration: number;
   floatOffset: number;
 };
 
-const createStarParticles = (count: number): StarParticle[] => {
+const createHaloStarParticles = (count: number): StarParticle[] => {
+  const haloWidth = 760;
+  const haloHeight = 980;
+  const borderBandPx = 150;
+  const ellipseCenterX = 445;
+  const ellipseCenterY = 500;
+  const ellipseRadiusX = 220;
+  const ellipseRadiusY = 350;
   let seed = 673;
   const rand = () => {
     seed = (seed * 9301 + 49297) % 233280;
     return seed / 233280;
   };
 
-  return Array.from({ length: count }, (_, index) => {
-    const size = 1 + rand() * 2;
-    const opacity = 0.2 + rand() * 0.65;
-    const softPurpleChance = rand() > 0.58;
+  const particles: StarParticle[] = [];
+  let attempts = 0;
 
-    return {
-      id: index,
-      left: rand() * 100,
-      top: rand() * 100,
+  while (particles.length < count && attempts < count * 30) {
+    attempts += 1;
+    const x = rand() * haloWidth;
+    const y = rand() * haloHeight;
+
+    const nx = (x - ellipseCenterX) / ellipseRadiusX;
+    const ny = (y - ellipseCenterY) / ellipseRadiusY;
+    const ringDistance = Math.abs(Math.hypot(nx, ny) - 1) * Math.min(ellipseRadiusX, ellipseRadiusY);
+
+    if (ringDistance > borderBandPx) {
+      continue;
+    }
+
+    const sizeRoll = rand();
+    const size = sizeRoll > 0.96 ? 3 : sizeRoll > 0.68 ? 2 : 1;
+    const softPurpleChance = size > 1 || rand() > 0.62;
+    const falloff = Math.max(0.1, 1 - ringDistance / borderBandPx);
+    const opacity = Math.min(1, 0.12 + falloff * 0.92);
+    const glowStrength = size > 1 ? 7 + size * 2 : 4.5;
+
+    particles.push({
+      id: particles.length,
+      left: (x / haloWidth) * 100,
+      top: (y / haloHeight) * 100,
       size,
       opacity,
-      color: softPurpleChance ? "#c4b5fd" : "#ffffff",
-      delay: rand() * 10,
-      twinkleDuration: 2.8 + rand() * 3.6,
-      floatDuration: 12 + rand() * 14,
-      floatOffset: 4 + rand() * 9,
-    };
-  });
+      color: softPurpleChance ? "#ddd6fe" : "#ffffff",
+      delay: rand() * 9,
+      twinkleDuration: 3.8 + rand() * 4.4,
+      floatDuration: 12 + rand() * 12,
+      floatOffset: 2 + rand() * 4,
+      glowStrength,
+    });
+  }
+
+  return particles;
 };
 
-const starParticles = createStarParticles(62);
+const haloStarParticles = createHaloStarParticles(760);
+
+const getStarClass = (size: number) => {
+  if (size === 3) {
+    return "hero-star h-[3px] w-[3px] rounded-full blur-[1px] bg-purple-200";
+  }
+  if (size === 2) {
+    return "hero-star h-[2px] w-[2px] rounded-full blur-[1px] bg-purple-200";
+  }
+  return "hero-star h-[1px] w-[1px] rounded-full";
+};
 
 const parentVariants = {
   hidden: {},
@@ -77,55 +116,83 @@ const imageVariants = {
 
 const Hero = () => {
   const [hasImageError, setHasImageError] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, { stiffness: 58, damping: 20, mass: 0.9 });
+  const smoothY = useSpring(pointerY, { stiffness: 58, damping: 20, mass: 0.9 });
+
+  const starsShiftX = useTransform(smoothX, [-1, 1], [-18, 18]);
+  const starsShiftY = useTransform(smoothY, [-1, 1], [-14, 14]);
+
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const normalizedX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const normalizedY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+
+    pointerX.set(Math.max(-1, Math.min(1, normalizedX)));
+    pointerY.set(Math.max(-1, Math.min(1, normalizedY)));
+  };
+
+  const handleMouseLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
+  const portraitMaskStyle: CSSProperties = {
+    WebkitMaskImage: "linear-gradient(to top, transparent 5%, black 25%)",
+    maskImage: "linear-gradient(to top, transparent 5%, black 25%)",
+    WebkitMaskRepeat: "no-repeat",
+    maskRepeat: "no-repeat",
+    WebkitMaskSize: "100% 100%",
+    maskSize: "100% 100%",
+  };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#020617] text-[#e2e8f0]">
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(120deg,#020617_0%,#030a1e_44%,#020617_100%),radial-gradient(circle_at_70%_50%,rgba(124,58,237,0.35)_0%,rgba(124,58,237,0.2)_30%,transparent_64%),radial-gradient(circle_at_25%_18%,rgba(56,189,248,0.12)_0%,transparent_44%),radial-gradient(circle_at_84%_14%,rgba(139,92,246,0.2)_0%,transparent_34%)]" />
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_56%_60%,transparent_0%,rgba(2,6,23,0.72)_80%)]" />
-      <div className="hero-stars pointer-events-none absolute inset-0 z-10">
-        {starParticles.map((star) => (
-          <span
-            key={star.id}
-            className="hero-star"
-            style={
-              {
-                left: `${star.left}%`,
-                top: `${star.top}%`,
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                opacity: star.opacity,
-                backgroundColor: star.color,
-                boxShadow: `0 0 ${star.size * 5}px ${star.color}`,
-                animationDelay: `${star.delay}s, ${star.delay}s`,
-                animationDuration: `${star.floatDuration}s, ${star.twinkleDuration}s`,
-                "--float-offset": `${star.floatOffset}px`,
-              } as CSSProperties
-            }
-          />
-        ))}
-      </div>
+    <section
+      className="relative min-h-screen overflow-hidden bg-[linear-gradient(110deg,#020307_0%,#02040b_45%,#04070f_100%)] text-[#e2e8f0]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Noise overlay for texture */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-[2] opacity-[0.03] mix-blend-overlay"
+        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+      />
 
-      <div className="relative z-20 mx-auto grid min-h-screen max-w-7xl items-center gap-14 px-6 pb-8 pt-28 sm:px-8 md:pt-32 lg:grid-cols-[1.02fr_0.98fr] lg:gap-6 lg:px-10 lg:pb-0">
-        <motion.div variants={parentVariants} initial="hidden" animate="show" className="max-w-[42rem] text-center lg:text-left">
+      {/* Vignette */}
+      <div className="pointer-events-none absolute inset-0 z-[3] bg-[radial-gradient(circle_at_52%_48%,transparent_24%,rgba(2,6,23,0.42)_72%,rgba(2,6,23,0.92)_100%)]" />
+
+      <div className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-7 pb-10 pt-[120px] sm:px-12 lg:grid-cols-[1fr_0.98fr] lg:gap-4 lg:px-16 lg:pb-10 xl:px-20">
+        <motion.div
+          variants={parentVariants}
+          initial="hidden"
+          animate="show"
+          className="mx-auto flex w-full max-w-[40rem] flex-col justify-center py-10 text-center lg:mx-0 lg:max-w-[36rem] lg:py-0 lg:pr-10 lg:text-left"
+        >
           <motion.h1
             variants={revealVariants}
-            className="font-heading text-[2.65rem] font-bold leading-[0.97] tracking-[-0.03em] text-[#e2e8f0] sm:text-[3.6rem] lg:text-[4.45rem] xl:text-[5rem]"
+            className="font-heading text-[2.65rem] font-semibold leading-[0.97] tracking-tighter text-[#e2e8f0] sm:text-[3.6rem] lg:text-[4.45rem] xl:text-[5rem]"
           >
             Build systems,
             <br className="hidden sm:block" />
             not just websites.
           </motion.h1>
 
-          <motion.p variants={revealVariants} className="mx-auto mt-7 max-w-[37ch] text-base leading-8 text-[#94a3b8] sm:text-lg lg:mx-0">
+          <motion.p variants={revealVariants} className="mx-auto mt-4 max-w-[36ch] text-base leading-relaxed text-[#a1a1aa] sm:text-lg lg:mx-0">
             I design and develop full-stack applications that solve real-world problems.
           </motion.p>
 
-          <motion.div variants={revealVariants} className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+          <motion.div variants={revealVariants} className="mt-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center lg:justify-start">
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#a78bfa]/40 bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#8b5cf6] px-7 py-3.5 text-base font-semibold text-white shadow-[0_0_0_1px_rgba(196,181,253,0.26)_inset,0_12px_42px_rgba(124,58,237,0.42)] transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(196,181,253,0.32)_inset,0_18px_56px_rgba(124,58,237,0.62)]"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#a78bfa]/40 bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#8b5cf6] px-6 text-base font-semibold text-white shadow-[0_0_20px_rgba(120,80,255,0.3)] transition-all duration-300 hover:shadow-[0_0_28px_rgba(120,80,255,0.45)]"
             >
               View Projects
               <ArrowRight size={18} />
@@ -135,33 +202,60 @@ const Hero = () => {
               href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#7c3aed]/45 bg-transparent px-7 py-3.5 text-base font-medium text-[#e2e8f0] shadow-[0_0_0_1px_rgba(124,58,237,0.1)_inset] transition-all duration-300 hover:border-[#a78bfa] hover:shadow-[0_0_35px_rgba(124,58,237,0.35)]"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-6 text-base font-medium text-[#e2e8f0] transition-all duration-300 hover:bg-white/10 hover:border-white/20"
             >
               Contact Me
               <Mail size={18} />
             </motion.a>
           </motion.div>
+
+          <motion.div variants={revealVariants} className="pointer-events-none absolute -left-16 top-[30%] hidden h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.2)_0%,transparent_72%)] blur-[72px] lg:block" />
         </motion.div>
 
-        <motion.div
-          variants={imageVariants}
-          initial="hidden"
-          animate="show"
-          className="relative mx-auto flex w-full max-w-[28rem] items-end justify-center lg:ml-auto lg:mr-0 lg:max-w-[36rem] lg:justify-end"
-        >
-          <div className="animate-hero-glow absolute bottom-[6%] right-[10%] z-0 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.5)_0%,rgba(124,58,237,0.28)_42%,transparent_70%)] blur-[85px] sm:h-[25rem] sm:w-[25rem] lg:h-[34rem] lg:w-[34rem]" />
-          <div className="animate-hero-glow absolute bottom-[11%] right-[17%] z-0 h-44 w-44 rounded-full bg-[#8b5cf6]/35 blur-[70px] sm:h-56 sm:w-56" />
-          <div className="absolute inset-x-[16%] bottom-[11%] z-0 h-24 rounded-full bg-[#7c3aed]/35 blur-[36px] sm:inset-x-[20%]" />
+        <motion.div variants={imageVariants} initial="hidden" animate="show" className="relative flex min-h-[24rem] self-end items-end justify-end pt-32 lg:min-h-[72vh] lg:pt-36">
+          <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} className="relative z-20 h-full w-full">
+            <motion.div
+              className="pointer-events-none absolute bottom-0 right-[-6%] -z-10 h-[74vh] w-[42rem] max-w-[95%]"
+              style={{ x: starsShiftX, y: starsShiftY }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,80,255,0.3)_0%,rgba(120,80,255,0.05)_50%,transparent_80%)] blur-[80px]" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 80%)",
+                  maskImage: "radial-gradient(circle, black 40%, transparent 80%)",
+                }}
+              >
+                {haloStarParticles.map((star) => (
+                  <span
+                    key={`halo-${star.id}`}
+                    className={getStarClass(star.size)}
+                    style={
+                      {
+                        left: `${star.left}%`,
+                        top: `${star.top}%`,
+                        opacity: star.opacity,
+                        backgroundColor: star.size > 1 ? undefined : star.color,
+                        boxShadow: `0 0 ${star.glowStrength}px ${star.color}`,
+                        animationDelay: `${star.delay}s, ${star.delay}s`,
+                        animationDuration: `${star.floatDuration}s, ${star.twinkleDuration}s`,
+                        "--float-offset": `${star.floatOffset}px`,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
+              </div>
+            </motion.div>
 
-          <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }} className="relative z-20 w-full">
             {hasImageError ? (
-              <div className="mx-auto h-[23rem] w-[16.5rem] rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-[0_30px_80px_rgba(124,58,237,0.22)] sm:h-[28rem] sm:w-[20rem] lg:ml-auto lg:h-[38rem] lg:w-[27rem]" />
+              <div className="absolute bottom-0 right-[2%] h-[56vh] w-[19rem] rounded-[2.6rem] bg-[linear-gradient(155deg,rgba(226,232,240,0.08),rgba(15,23,42,0.03)_58%,rgba(124,58,237,0.14))] sm:w-[21rem] lg:right-[0] lg:h-[68vh] lg:w-[22vw]" />
             ) : (
               <img
                 src={cutoutImage}
                 alt="Portrait cutout"
                 onError={() => setHasImageError(true)}
-                className="mx-auto h-auto max-h-[26rem] w-auto object-contain object-bottom [filter:brightness(1.06)_contrast(1.07)_saturate(1.02)] drop-shadow-[0_0_40px_rgba(124,58,237,0.4)] sm:max-h-[32rem] lg:ml-auto lg:max-h-[45rem]"
+                style={{ ...portraitMaskStyle, filter: "drop-shadow(0 0 30px rgba(120, 80, 255, 0.5))" }}
+                className="absolute bottom-0 right-[-2vw] h-[60vh] w-auto max-w-none object-contain object-bottom sm:h-[66vh] lg:h-[74vh]"
               />
             )}
           </motion.div>
